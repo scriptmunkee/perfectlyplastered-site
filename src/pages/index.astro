@@ -118,7 +118,7 @@ const stars = [1, 2, 3, 4, 5];
         <img src="/images/work/nick-at-work.webp" alt="Nick in a Perfectly Plastered t-shirt working on a wall" width="570" height="380" loading="lazy" />
         <div>
           <h2 id="about-h">Run by Nick</h2>
-          <p>Perfectly Plastered is Nick's business. He comes out to look at the job, gives you the quote and stays in touch until it is finished.</p>
+          <p>Perfectly Plastered is Nick's business, and his name comes up in almost every review.</p>
           <p>Customers keep mentioning the same things: walls that look brand new, a clean house at the end of each day, and Nick himself, friendly and easy to deal with. Several have had him back for a second job.</p>
         </div>
       </div>
@@ -127,19 +127,21 @@ const stars = [1, 2, 3, 4, 5];
     <section class="section faq" id="faq" aria-labelledby="faq-h">
       <div class="inner">
         <h2 id="faq-h">Common questions</h2>
-        {faqs.map((f) => (
-          <details>
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details>
+              <summary>{f.q}<Icon name="plus" /></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
       </div>
     </section>
 
     <section class="section" id="contact" aria-labelledby="contact-h">
       <div class="inner">
         <h2 id="contact-h">Get a quote</h2>
-        <p class="lede">The quickest way is a WhatsApp message with a couple of photos of the job. Or just ring Nick. {site.hours}</p>
+        <p class="lede">The quickest way is a WhatsApp message with a couple of photos of the job. Or just ring Nick.</p>
         <div class="contact-actions">
           <a class="btn btn-gold" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
           <a class="btn btn-line" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp a photo</a>

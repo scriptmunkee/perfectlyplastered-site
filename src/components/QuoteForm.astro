@@ -88,8 +88,16 @@ import { site } from '../data/site';
     };
 
     back.addEventListener('click', () => show(Math.max(0, i - 1)));
+    // Advance on a tap or click only. Arrow keys also fire 'change' in a radio
+    // group, so keyboard users browse freely and continue with Next.
+    let pointer = false;
+    form.querySelectorAll('.option').forEach((o) => o.addEventListener('pointerdown', () => (pointer = true)));
     form.querySelectorAll('input[name="job"]').forEach((r) =>
-      r.addEventListener('change', () => setTimeout(() => i === 0 && show(1), 180)),
+      r.addEventListener('change', (e) => {
+        const advance = pointer || !e.isTrusted; // !isTrusted: picked from a service "Quote" button
+        pointer = false;
+        if (advance) setTimeout(() => i === 0 && show(1), 180);
+      }),
     );
 
     form.addEventListener('submit', (e) => {
