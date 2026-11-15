@@ -1,0 +1,22 @@
+{
+  "note": "Preview templates B and C (/templates/b/, /templates/c/). Not the homepage build; see state.json for that.",
+  "updated": "2026-11-15",
+  "template-b": {
+    "contract": ".impeccable/surfaces/src-pages-templates-b-index-astro.md",
+    "comp": ".impeccable/mocks/template-b/b1-split-photo.png",
+    "compDiff": { "overall": 0.6094, "verdict": "drift", "structure": 0.3938, "paletteMatch": 0.8792 },
+    "why": "Comp rooms are AI renders; the build uses Nick's real, warmer photos. Layout regions match the contract.",
+    "detector": "clean (live render, design-system advisories excluded: own palette by design)",
+    "finishReview": "fix: scale, header, strip, quote band, review-count wording, phone bar, phone grid; all applied",
+    "disposition": "ship as preview"
+  },
+  "template-c": {
+    "contract": ".impeccable/surfaces/src-pages-templates-c-index-astro.md",
+    "comp": ".impeccable/mocks/template-c/c3-gallery-wall.png (+ c2-arch.png services split)",
+    "compDiff": { "overall": 0.5369, "verdict": "contradicted", "structure": 0.3859, "paletteMatch": 0.7425 },
+    "why": "Real photos instead of AI rooms, and the band is concave as on the pinned reference (the comp drew it convex). Both are stated decisions in the contract.",
+    "detector": "clean (live render, design-system advisories excluded: own palette by design)",
+    "finishReview": "fix: plaster texture and tone, display size, fold, phone band and CTA, single services pill, star contrast, review-count wording; all applied except band curvature (reference wins)",
+    "disposition": "ship as preview"
+  }
+}

@@ -7,6 +7,7 @@ Order of work:
 1. Brief: done, see PRODUCT.md (open items in docs/questions-for-nick.md)
 2. Design direction: done (standard trade site, quote-led comp). Contract in .impeccable/surfaces/
 3. Homepage: built. Next: service pages, town pages, contact
+   Two alternative homepage templates for comparison live at /templates/b/ (after digital-scientists.co.uk) and /templates/c/ (after restoradampproofing.com). Always noindex, out of the sitemap, own CSS in src/styles/template-b.css and template-c.css. Contracts in .impeccable/surfaces/. Remove or promote one before launch.
 4. Cloudflare Worker, analytics, Search Console, domain cutover
 
 ## Design skills in this repo

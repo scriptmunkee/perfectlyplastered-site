@@ -7,6 +7,6 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   integrations: [
-    sitemap({ filter: (page) => !page.includes('/404') }),
+    sitemap({ filter: (page) => !page.includes('/404') && !page.includes('/templates/') }),
   ],
 });

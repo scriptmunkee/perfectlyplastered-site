@@ -1,0 +1,48 @@
+---
+// Bare layout for the preview templates under /templates/. Always noindex, no
+// site-wide stylesheet: each template brings its own header, footer and CSS.
+import { site } from '../data/site';
+interface Props { title: string; description: string; fonts: string[]; theme: string; bodyClass: string }
+const { title, description, fonts, theme, bodyClass } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content={theme} />
+    {fonts.map((f) => <link rel="preload" href={`/fonts/${f}`} as="font" type="font/woff2" crossorigin />)}
+  </head>
+  <body class={bodyClass}>
+    <slot />
+    <script>
+      const btn = document.querySelector<HTMLButtonElement>('[data-menu]');
+      const nav = document.getElementById('site-nav');
+      btn?.addEventListener('click', () => {
+        const open = nav!.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      nav?.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('a')) { nav.classList.remove('open'); btn?.setAttribute('aria-expanded', 'false'); }
+      });
+      // The fixed call bar stays out of the way while the hero's own buttons are on screen.
+      const bar = document.querySelector('[data-bar]');
+      const ctas = document.querySelector('[data-hero-ctas]');
+      if (bar && ctas && 'IntersectionObserver' in window) {
+        new IntersectionObserver(([e]) => bar.toggleAttribute('data-hidden', e.isIntersecting)).observe(ctas);
+      }
+      // Service "Quote" buttons preselect that job in the quote picker.
+      document.querySelectorAll<HTMLAnchorElement>('[data-pick]').forEach((a) =>
+        a.addEventListener('click', () => {
+          const input = document.querySelector<HTMLInputElement>(`#quote input[value="${a.dataset.pick}"]`);
+          if (input) { input.checked = true; input.dispatchEvent(new Event('change')); }
+        }),
+      );
+    </script>
+  </body>
+</html>

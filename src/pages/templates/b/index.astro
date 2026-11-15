@@ -1,0 +1,219 @@
+---
+// Template B: preview only. Style after digital-scientists.co.uk "websites for plasterers".
+// Direction contract: .impeccable/surfaces/src-pages-templates-b-index-astro.md
+import Template from '../../../layouts/Template.astro';
+import Icon from '../../../components/Icon.astro';
+import QuoteForm from '../../../components/QuoteForm.astro';
+import { site, waLink } from '../../../data/site';
+import { reviews } from '../../../data/reviews';
+import { services, areas, work } from '../../../data/services';
+import { faqs } from '../../../data/faqs';
+import '../../../styles/template-b.css';
+
+const title = 'Plasterer in Harrogate | Perfectly Plastered';
+const description = 'Plasterer in Harrogate for skimming, artex removal, ceiling repairs and media walls. Run by Nick, rated 5.0 on Google. Get a quote by phone or WhatsApp.';
+const stars = [1, 2, 3, 4, 5];
+const strip = ['Skimming', 'Artex removal', 'Ceiling repairs', 'Media walls'];
+const steps = [
+  { t: 'Send a photo', d: 'WhatsApp Nick a couple of photos of the walls or ceiling, or give him a ring.' },
+  { t: 'Get a quote', d: 'He gives you a rough idea from the photos, then a firm quote once he has seen the job.' },
+  { t: 'Smooth, clean finish', d: 'Floors and furniture protected while he works, and the house tidied before he leaves.' },
+];
+// Nine photos fill the desktop grid exactly (the first spans two by two).
+const gallery = [...work, { file: 'box-room-walls', caption: 'Box room walls and ceiling replastered' }];
+const featured = [reviews[1], reviews[4], reviews[3], reviews[5], reviews[6], reviews[7]];
+---
+<Template title={title} description={description} theme="#f4f5fd" bodyClass="tb"
+  fonts={['gabarito-latin-900-normal.woff2', 'figtree-latin-400-normal.woff2']}>
+  <header class="tb-header">
+    <a class="tb-word" href="/templates/b/" aria-label="Perfectly Plastered, home">Perfectly Plastered</a>
+    <nav class="tb-nav" id="site-nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Recent work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#areas">Areas</a>
+    </nav>
+    <div class="tb-head-actions">
+      <a class="pill pill-solid pill-sm tb-head-quote" href="#quote">Get a quote</a>
+      <a class="tb-icon" href={`tel:${site.phone}`} aria-label={`Call Nick on ${site.phoneDisplay}`}><Icon name="phone" /></a>
+      <button class="tb-icon tb-menu" type="button" data-menu aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><Icon name="menu" /></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tb-hero" aria-labelledby="h1">
+      <div class="tb-hero-copy">
+        <h1 id="h1" class="tb-display">Plasterer in <span>Harrogate</span></h1>
+        <p class="tb-lede">Smooth, ready-to-paint walls and ceilings. Run by Nick.</p>
+        <div class="tb-ctas" data-hero-ctas>
+          <a class="pill pill-solid" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+          <a class="pill pill-line" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp a photo</a>
+        </div>
+        <ul class="tb-chips" aria-label="At a glance">
+          <li><Icon name="plus" />5.0 on Google</li>
+          <li><Icon name="plus" />50+ reviews</li>
+          <li><Icon name="plus" />Skimming</li>
+          <li><Icon name="plus" />Artex removal</li>
+          <li><Icon name="plus" />Ceiling repairs</li>
+        </ul>
+      </div>
+      <figure class="tb-hero-photo">
+        <img src="/images/work/bright-room-skim.webp" width="1200" height="1600" fetchpriority="high"
+          alt="A bright room with a sloped ceiling, walls and ceiling freshly skimmed by Nick" />
+        <figcaption class="float float-review">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5">{stars.map(() => <Icon name="star" />)}</span>
+          <span class="float-quote">{reviews[0].text}</span>
+          <span class="float-name">{reviews[0].name}, Google</span>
+        </figcaption>
+        <p class="float float-towns">Covers Harrogate, Knaresborough, Wetherby and Ripon</p>
+      </figure>
+    </section>
+
+    <div class="tb-strip">
+      <ul class="tb-strip-track" aria-label="Services">
+        {strip.map((w) => <li>{w}</li>)}
+      </ul>
+    </div>
+
+    <section class="tb-section" aria-labelledby="how-h">
+      <div class="tb-inner tb-how">
+        <div>
+          <h2 id="how-h" class="tb-h2">Getting a quote from Nick</h2>
+          <p class="tb-intro">No forms to wrestle with and no sales calls. You speak to the person who does the work.</p>
+        </div>
+        <ol class="tb-steps">
+          {steps.map((s, k) => (
+            <li><span class="tb-num">{String(k + 1).padStart(2, '0')}</span><h3>{s.t}</h3><p>{s.d}</p></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="tb-section tb-tint" id="services" aria-labelledby="services-h">
+      <div class="tb-inner">
+        <h2 id="services-h" class="tb-h2 tb-centre">What Nick does</h2>
+        <div class="tb-services">
+          <img class="tb-services-photo" src="/images/work/fireplace-wall-skim.webp" width="1200" height="1600" loading="lazy" decoding="async"
+            alt="Chimney breast and fireplace wall freshly skimmed, plaster still drying" />
+          <div class="tb-service-list">
+            {services.map((s) => (
+              <article class="tb-card tb-service">
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+                <a class="pill pill-line pill-sm" href="#quote" data-pick={s.pick}>Quote this job</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tb-section" id="reviews" aria-labelledby="reviews-h">
+      <div class="tb-inner">
+        <div class="tb-rating">
+          <span class="stars" role="img" aria-label="Rated 5 out of 5">{stars.map(() => <Icon name="star" />)}</span>
+          <h2 id="reviews-h" class="tb-h2">5.0 on Google from 50+ reviews</h2>
+          <p class="tb-intro">Every review is five stars. The newest are on <a href={site.googleReviewsUrl} rel="noopener">Nick's Google profile</a>.</p>
+        </div>
+        <div class="tb-reviews">
+          {featured.map((r) => (
+            <figure class="tb-card tb-review">
+              <span class="stars" role="img" aria-label="5 stars">{stars.map(() => <Icon name="star" />)}</span>
+              <blockquote>{r.text}</blockquote>
+              <figcaption><strong>{r.name}</strong>{r.job && <span>{r.job}</span>}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tb-section tb-tint" id="work" aria-labelledby="work-h">
+      <div class="tb-inner">
+        <h2 id="work-h" class="tb-h2">Recent work</h2>
+        <p class="tb-intro">Real jobs, photographed on the day. The pink is fresh plaster still drying; it turns pale before it is ready to paint. More go up on the <a href={site.facebookUrl} rel="noopener">Perfectly Plastered Facebook page</a>.</p>
+        <div class="tb-work">
+          {gallery.map((w) => (
+            <figure>
+              <img src={`/images/work/${w.file}.webp`} alt={w.caption} width="800" height="1000" loading="lazy" decoding="async" />
+              <figcaption>{w.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tb-section tb-band" aria-labelledby="quote-h">
+      <div class="tb-inner tb-quote">
+        <div>
+          <h2 id="quote-h" class="tb-h2">Tell Nick what needs doing</h2>
+          <p class="tb-intro">Pick the job, your town and a couple of details. It opens WhatsApp with everything filled in, so you can add photos and send it straight to Nick.</p>
+          <p class="tb-intro">Rather talk? Ring <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.</p>
+        </div>
+        <div class="tb-card tb-quote-card"><QuoteForm submitClass="pill pill-solid" /></div>
+      </div>
+    </section>
+
+    <section class="tb-section" id="areas" aria-labelledby="areas-h">
+      <div class="tb-inner tb-areas-wrap">
+        <div>
+          <h2 id="areas-h" class="tb-h2">Where Nick works</h2>
+          <p class="tb-intro">Based in Harrogate and working across the towns around it. Close by but not listed? Ask anyway.</p>
+        </div>
+        <ul class="tb-areas">
+          {areas.map((a) => <li><strong>{a.town}</strong><span>{a.note}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="tb-section tb-tint" id="about" aria-labelledby="about-h">
+      <div class="tb-inner tb-about">
+        <img src="/images/work/nick-at-work.webp" alt="Nick in a Perfectly Plastered t-shirt working on a wall" width="570" height="380" loading="lazy" decoding="async" />
+        <div>
+          <h2 id="about-h" class="tb-h2">Run by Nick</h2>
+          <p>Perfectly Plastered is Nick's business, and his name comes up in almost every review.</p>
+          <p>Customers keep mentioning the same things: walls that look brand new, a clean house at the end of each day, and Nick himself, friendly and easy to deal with. Several have had him back for a second job.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tb-section" id="faq" aria-labelledby="faq-h">
+      <div class="tb-inner tb-faq">
+        <h2 id="faq-h" class="tb-h2 tb-centre">Common questions</h2>
+        {faqs.map((f) => (
+          <details class="tb-card">
+            <summary>{f.q}<Icon name="plus" /></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="tb-section" id="contact" aria-labelledby="contact-h">
+      <div class="tb-inner">
+        <div class="tb-cta">
+          <h2 id="contact-h" class="tb-display tb-cta-h">Smooth walls start with a photo</h2>
+          <p>Send Nick a couple of photos on WhatsApp, or ring him for a chat about the job.</p>
+          <div class="tb-ctas">
+            <a class="pill pill-white" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+            <a class="pill pill-ghost" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp a photo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tb-footer">
+    <div class="tb-inner">
+      <p><strong>Perfectly Plastered</strong>, plastering in Harrogate, Knaresborough, Wetherby and Ripon. Run by Nick.</p>
+      <p>Nick posts new jobs on the <a href={site.facebookUrl} rel="noopener">Perfectly Plastered Facebook page</a>.</p>
+      <p>&copy; {new Date().getFullYear()} Perfectly Plastered</p>
+    </div>
+  </footer>
+
+  <div class="tb-bar" data-bar role="region" aria-label="Quick contact">
+    <a class="pill pill-solid" href={`tel:${site.phone}`}><Icon name="phone" />Call</a>
+    <a class="pill pill-line" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp</a>
+  </div>
+</Template>

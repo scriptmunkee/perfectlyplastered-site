@@ -2,6 +2,8 @@
 import Icon from './Icon.astro';
 import { services } from '../data/services';
 import { site } from '../data/site';
+interface Props { submitClass?: string }
+const { submitClass = 'btn btn-gold' } = Astro.props;
 // Three steps. Until Nick chooses where form enquiries should go, the finished
 // request opens WhatsApp with the details filled in, so he gets it on his phone
 // and the customer can attach photos there.
@@ -54,7 +56,7 @@ import { site } from '../data/site';
 
   <div class="step-nav">
     <button class="btn btn-ghost" type="button" data-back hidden><Icon name="back" /><span class="sr-only">Back</span></button>
-    <button class="btn btn-gold" type="submit"><span class="label" data-next-label>Next</span><Icon name="arrow" /></button>
+    <button class={submitClass} type="submit"><span class="label" data-next-label>Next</span><Icon name="arrow" /></button>
   </div>
 </form>
 

@@ -11,3 +11,4 @@ dist/
 .impeccable/build/font-match/
 .impeccable/build/scaffold/
 .impeccable/build/*.png
+.impeccable/review/templates/

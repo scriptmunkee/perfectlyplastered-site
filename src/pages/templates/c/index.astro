@@ -1,0 +1,186 @@
+---
+// Template C: preview only. Style after restoradampproofing.com.
+// Direction contract: .impeccable/surfaces/src-pages-templates-c-index-astro.md
+import Template from '../../../layouts/Template.astro';
+import Icon from '../../../components/Icon.astro';
+import QuoteForm from '../../../components/QuoteForm.astro';
+import { site, waLink } from '../../../data/site';
+import { reviews } from '../../../data/reviews';
+import { services, areas, work } from '../../../data/services';
+import { faqs } from '../../../data/faqs';
+import '../../../styles/template-c.css';
+
+const title = 'Plasterer in Harrogate | Perfectly Plastered';
+const description = 'Plasterer in Harrogate for skimming, artex removal, ceiling repairs and media walls. Run by Nick, rated 5.0 on Google. Get a quote by phone or WhatsApp.';
+const stars = [1, 2, 3, 4, 5];
+const wall = [
+  { file: 'stairwell-skylight', alt: 'Stairwell walls and skylight ceiling freshly skimmed' },
+  { file: 'box-room-walls', alt: 'Box room walls and ceiling replastered' },
+  { file: 'living-room-replaster', alt: 'Living room walls and ceiling freshly skimmed, fireplace in the chimney breast' },
+  { file: 'alcove-wall-skim', alt: 'Alcove wall skimmed beside a doorway' },
+  { file: 'open-plan-wall', alt: 'Open-plan room with the end wall freshly skimmed' },
+];
+const featured = [reviews[1], reviews[2], reviews[4], reviews[3], reviews[5], reviews[7]];
+---
+<Template title={title} description={description} theme="#ffffff" bodyClass="tc"
+  fonts={['schibsted-grotesk-latin-800-normal.woff2', 'schibsted-grotesk-latin-400-normal.woff2']}>
+  <header class="tc-header">
+    <a class="tc-word" href="/templates/c/" aria-label="Perfectly Plastered, home">Perfectly Plastered</a>
+    <nav class="tc-nav" id="site-nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#work">Recent work</a>
+      <a href="#areas">Areas</a>
+    </nav>
+    <div class="tc-head-actions">
+      <a class="tc-head-phone" href={`tel:${site.phone}`}><Icon name="phone" />{site.phoneDisplay}</a>
+      <a class="tc-pill tc-pill-peach tc-pill-sm tc-head-wa" href={waLink('Hi Nick, I found you on your website. ')}>WhatsApp</a>
+      <a class="tc-icon" href={`tel:${site.phone}`} aria-label={`Call Nick on ${site.phoneDisplay}`}><Icon name="phone" /></a>
+      <button class="tc-icon tc-menu" type="button" data-menu aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><Icon name="menu" /></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tc-hero plaster" aria-labelledby="h1">
+      <h1 id="h1" class="tc-display stop-blue">Plasterer in Harrogate</h1>
+      <p class="tc-lede">Smooth, ready-to-paint walls and ceilings. Run by Nick.</p>
+      <div class="tc-wall" role="list" aria-label="Recent rooms Nick has plastered">
+        {wall.map((w, k) => (
+          <figure role="listitem" class={k === 2 ? 'mid' : ''}>
+            <img src={`/images/work/${w.file}.webp`} alt={w.alt} width="1000" height="1333" fetchpriority={k === 2 ? 'high' : undefined} loading={k === 2 ? 'eager' : 'lazy'} decoding="async" />
+          </figure>
+        ))}
+      </div>
+      <div class="tc-hero-proof">
+        <span class="stars" role="img" aria-label="Rated 5 out of 5">{stars.map(() => <Icon name="star" />)}</span>
+        <p><a href="#reviews">5.0 on Google from 50+ reviews</a></p>
+        <div class="tc-hero-ctas" data-hero-ctas>
+          <a class="tc-pill tc-pill-peach" href="#quote">Get a quote</a>
+          <a class="tc-textlink" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-split" id="services" aria-labelledby="services-h">
+      <img class="tc-split-photo" src="/images/work/fireplace-wall-skim.webp" width="1200" height="1600" loading="lazy" decoding="async"
+        alt="Chimney breast and fireplace wall freshly skimmed, plaster still drying" />
+      <div class="tc-panel">
+        <h2 id="services-h" class="tc-h2 stop-gold">What Nick does</h2>
+        {services.map((s) => (
+          <article class="tc-service">
+            <h3 class="stop-gold">{s.title}</h3>
+            <p>{s.text}</p>
+          </article>
+        ))}
+        <a class="tc-pill tc-pill-outline" href="#quote">Get a quote</a>
+      </div>
+    </section>
+
+    <section class="tc-section plaster" id="reviews" aria-labelledby="reviews-h">
+      <div class="tc-inner">
+        <div class="tc-head-row">
+          <h2 id="reviews-h" class="tc-h2 stop-blue">What customers say</h2>
+          <p class="tc-intro">5.0 from 50+ Google reviews, every one five stars. The newest are on <a href={site.googleReviewsUrl} rel="noopener">Nick's Google profile</a>.</p>
+        </div>
+        <div class="tc-reviews">
+          {featured.map((r) => (
+            <figure class="tc-review">
+              <span class="stars" role="img" aria-label="5 stars">{stars.map(() => <Icon name="star" />)}</span>
+              <blockquote>{r.text}</blockquote>
+              <figcaption><strong>{r.name}</strong>{r.job && <span>{r.job}</span>}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-section tc-white" id="work" aria-labelledby="work-h">
+      <div class="tc-inner">
+        <div class="tc-head-row">
+          <h2 id="work-h" class="tc-h2 stop-blue">Recent work</h2>
+          <p class="tc-intro">Real jobs, photographed on the day. The pink is fresh plaster still drying. More go up on the <a href={site.facebookUrl} rel="noopener">Perfectly Plastered Facebook page</a>.</p>
+        </div>
+        <div class="tc-work">
+          {work.map((w) => (
+            <figure>
+              <img src={`/images/work/${w.file}.webp`} alt={w.caption} width="800" height="1000" loading="lazy" decoding="async" />
+              <figcaption>{w.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-section plaster" aria-labelledby="quote-h">
+      <div class="tc-inner tc-quote">
+        <div>
+          <h2 id="quote-h" class="tc-h2 stop-blue">Ask for a quote</h2>
+          <p class="tc-intro">Pick the job, your town and a couple of details. It opens WhatsApp with everything filled in, so you can add photos and send it straight to Nick.</p>
+          <p class="tc-intro">Rather talk? Ring <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.</p>
+        </div>
+        <div class="tc-quote-card"><QuoteForm submitClass="tc-pill tc-pill-peach" /></div>
+      </div>
+    </section>
+
+    <section class="tc-split tc-split-rev" id="areas" aria-labelledby="areas-h">
+      <img class="tc-split-photo" src="/images/work/bright-room-skim.webp" width="1200" height="1600" loading="lazy" decoding="async"
+        alt="A bright room with a sloped ceiling, walls and ceiling freshly skimmed" />
+      <div class="tc-panel">
+        <h2 id="areas-h" class="tc-h2 stop-gold">Where Nick works</h2>
+        <p class="tc-panel-intro">Based in Harrogate and working across the towns around it. Close by but not listed? Ask anyway.</p>
+        <ul class="tc-areas">
+          {areas.map((a) => <li><strong>{a.town}</strong><span>{a.note}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="tc-section tc-white" id="about" aria-labelledby="about-h">
+      <div class="tc-inner tc-about">
+        <img src="/images/work/nick-at-work.webp" alt="Nick in a Perfectly Plastered t-shirt working on a wall" width="570" height="380" loading="lazy" decoding="async" />
+        <div>
+          <h2 id="about-h" class="tc-h2 stop-blue">Run by Nick</h2>
+          <p>Perfectly Plastered is Nick's business, and his name comes up in almost every review.</p>
+          <p>Customers keep mentioning the same things: walls that look brand new, a clean house at the end of each day, and Nick himself, friendly and easy to deal with. Several have had him back for a second job.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-section plaster" id="faq" aria-labelledby="faq-h">
+      <div class="tc-inner tc-faq">
+        <h2 id="faq-h" class="tc-h2 stop-blue">Common questions</h2>
+        <div>
+          {faqs.map((f) => (
+            <details>
+              <summary>{f.q}<Icon name="plus" /></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tc-close" id="contact" aria-labelledby="contact-h">
+      <div class="tc-inner">
+        <h2 id="contact-h" class="tc-display tc-close-h stop-gold">Smooth walls, clean house</h2>
+        <p>Send Nick a couple of photos on WhatsApp, or ring him for a chat about the job.</p>
+        <div class="tc-hero-ctas">
+          <a class="tc-pill tc-pill-peach" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+          <a class="tc-pill tc-pill-outline" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp a photo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tc-footer">
+    <div class="tc-inner">
+      <p><strong>Perfectly Plastered</strong>, plastering in Harrogate, Knaresborough, Wetherby and Ripon. Run by Nick.</p>
+      <p>Nick posts new jobs on the <a href={site.facebookUrl} rel="noopener">Perfectly Plastered Facebook page</a>.</p>
+      <p>&copy; {new Date().getFullYear()} Perfectly Plastered</p>
+    </div>
+  </footer>
+
+  <div class="tc-bar" data-bar role="region" aria-label="Quick contact">
+    <a class="tc-pill tc-pill-peach" href={`tel:${site.phone}`}><Icon name="phone" />Call</a>
+    <a class="tc-pill tc-pill-dark" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp</a>
+  </div>
+</Template>
