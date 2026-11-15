@@ -1,0 +1,25 @@
+{
+  "name": "perfectlyplastered-site",
+  "version": "1.0.0",
+  "description": "perfectlyplastered.uk: Astro static site served by a Cloudflare Worker",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.5",
+    "astro": "^7.4.12"
+  },
+  "devDependencies": {
+    "wrangler": "^4.162.0"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

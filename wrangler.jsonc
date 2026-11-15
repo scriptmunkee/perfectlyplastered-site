@@ -1,0 +1,19 @@
+{
+  // Static assets only, same pattern as christopher-kelly-site.
+  // Workers Builds runs `npm run build` on every push to main and serves ./dist.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "perfectlyplastered-site",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "workers_dev": true
+  // Custom domains go here at cutover, e.g.
+  // "routes": [
+  //   { "pattern": "perfectlyplastered.uk", "custom_domain": true },
+  //   { "pattern": "www.perfectlyplastered.uk", "custom_domain": true }
+  // ]
+  // Keep them listed once added, or a deploy could drop them.
+}
