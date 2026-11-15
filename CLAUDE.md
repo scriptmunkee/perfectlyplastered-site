@@ -24,6 +24,11 @@ Order of work:
 - Internal links are natural anchor text inside the sentence. No bolt-on "Read more", "See more", "Explore" or "Contact us" lines.
 - Nick is not technical: anything for him to read or do must be dead simple.
 
+## Pre-launch
+`launched: false` in src/data/site.ts adds noindex to every page while the site lives only on the workers.dev preview. Set it to true in the same release that attaches the perfectlyplastered.uk domain.
+
+Preview: https://perfectlyplastered-site.christopherkelly-00.workers.dev
+
 ## Change, deploy, verify
 `npm ci`, edit, `npm run build` (must pass), commit, push to `main`. Pushing to `main` is a live release once the Worker is connected.
 

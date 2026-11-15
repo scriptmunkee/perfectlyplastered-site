@@ -27,7 +27,7 @@ const business = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex" />}
+    {(noindex || !site.launched) && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#0a2740" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

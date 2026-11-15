@@ -4,6 +4,9 @@
 export const site = {
   name: 'Perfectly Plastered',
   url: 'https://perfectlyplastered.uk',
+  // false until the domain moves to this build: every page carries noindex so the
+  // workers.dev preview cannot compete with Nick's current live site. Flip at cutover.
+  launched: false,
   owner: 'Nick',
   phone: '+447495160499',
   phoneDisplay: '07495 160499',
