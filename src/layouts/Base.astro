@@ -1,22 +1,86 @@
 ---
-// Minimal shell. The real head, nav, footer, sticky call bar, schema and
-// consent banner get built after the brief and design direction are signed off.
-import { site } from '../data/site';
-interface Props { title: string; description: string; noindex?: boolean }
-const { title, description, noindex = false } = Astro.props;
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { site, waLink } from '../data/site';
+interface Props { title: string; description: string; noindex?: boolean; schema?: object[] }
+const { title, description, noindex = false, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  '@id': `${site.url}/#business`,
+  name: site.name,
+  url: site.url,
+  telephone: site.phone,
+  founder: { '@type': 'Person', name: site.owner },
+  areaServed: site.serviceAreas.map((t) => ({ '@type': 'City', name: t })),
+  address: { '@type': 'PostalAddress', addressLocality: site.baseTown, addressRegion: 'North Yorkshire', addressCountry: 'GB' },
+  sameAs: [site.facebookUrl],
+  knowsAbout: ['Plastering', 'Skimming', 'Artex removal', 'Ceiling repair', 'Media walls'],
+};
 ---
 <!doctype html>
 <html lang="en-GB">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#0a2740" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="preload" href="/fonts/secular-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/biryani-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json" set:html={JSON.stringify([business, ...schema])} />
   </head>
   <body>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="Perfectly Plastered, home">Perfectly <span>Plastered</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#work">Recent work</a></li>
+          <li><a href="/#reviews">Reviews</a></li>
+          <li><a href="/#areas">Areas</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="icon-btn" href={`tel:${site.phone}`} aria-label={`Call Nick on ${site.phoneDisplay}`}><Icon name="phone" /></a>
+        <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><Icon name="menu" /></button>
+      </div>
+    </header>
+
     <slot />
+
+    <footer class="site-footer">
+      <div class="inner">
+        <p><strong>Perfectly Plastered</strong>, plastering in Harrogate, Knaresborough, Wetherby and Ripon. Run by Nick.</p>
+        <p>Call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a> or message on <a href={waLink()}>WhatsApp</a>. {site.hours}</p>
+        <p><a href={site.facebookUrl} rel="noopener">See more jobs on Facebook</a></p>
+        <p>&copy; {new Date().getFullYear()} Perfectly Plastered</p>
+      </div>
+    </footer>
+
+    <div class="action-bar" role="region" aria-label="Quick contact">
+      <a class="btn btn-gold" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+      <a class="btn btn-line" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp</a>
+    </div>
+
+    <script>
+      const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+      const nav = document.getElementById('site-nav');
+      btn?.addEventListener('click', () => {
+        const open = nav!.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      nav?.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('a')) { nav.classList.remove('open'); btn?.setAttribute('aria-expanded', 'false'); }
+      });
+    </script>
   </body>
 </html>

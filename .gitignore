@@ -5,3 +5,9 @@ dist/
 .env
 .env.*
 .DS_Store
+
+# Impeccable working files (large); keep the spec, state and brief
+.impeccable/build/crops/
+.impeccable/build/font-match/
+.impeccable/build/scaffold/
+.impeccable/build/*.png

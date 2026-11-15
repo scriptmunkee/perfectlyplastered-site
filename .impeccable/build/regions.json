@@ -1,0 +1,32 @@
+{
+  "regions": [
+    { "id": "header", "kind": "chrome", "pixelBox": {"x": 0, "y": 0, "w": 768, "h": 68}, "note": "white header bar with a hairline under it", "container": true },
+    { "id": "wordmark", "kind": "text", "pixelBox": {"x": 36, "y": 12, "w": 340, "h": 44}, "note": "wordmark: 'Perfectly' in navy, 'Plastered' in gold, bold sans" },
+    { "id": "header-call", "kind": "control", "pixelBox": {"x": 628, "y": 14, "w": 44, "h": 42}, "note": "navy phone handset icon button" },
+    { "id": "header-menu", "kind": "control", "pixelBox": {"x": 692, "y": 14, "w": 46, "h": 42}, "note": "navy three-line menu icon button" },
+    { "id": "hero-photo", "kind": "image", "pixelBox": {"x": 0, "y": 68, "w": 768, "h": 342}, "note": "photograph of a plasterer in white bib overalls skimming a ceiling with a trowel in a bright living room, furniture under dust sheets" },
+    { "id": "hero-band", "kind": "chrome", "pixelBox": {"x": 0, "y": 410, "w": 768, "h": 660}, "note": "deep navy band holding the hero copy, quote card and promises", "container": true },
+    { "id": "headline", "kind": "text", "pixelBox": {"x": 46, "y": 422, "w": 600, "h": 64}, "note": "H1 'Plasterer in Harrogate' in large bold white sans" },
+    { "id": "stars", "kind": "text", "pixelBox": {"x": 48, "y": 484, "w": 210, "h": 34}, "note": "five gold stars" },
+    { "id": "rating", "kind": "text", "pixelBox": {"x": 48, "y": 524, "w": 262, "h": 30}, "note": "'5.0 · 50+ Google reviews' in white" },
+    { "id": "quote-card", "kind": "chrome", "pixelBox": {"x": 42, "y": 558, "w": 684, "h": 390}, "note": "white rounded quote form card", "container": true },
+    { "id": "progress", "kind": "chrome", "pixelBox": {"x": 64, "y": 574, "w": 640, "h": 12}, "note": "three-segment progress bar, first segment gold, others light grey" },
+    { "id": "step-label", "kind": "text", "pixelBox": {"x": 64, "y": 592, "w": 96, "h": 24}, "note": "'Step 1 of 3' small navy text" },
+    { "id": "step-title", "kind": "text", "pixelBox": {"x": 64, "y": 620, "w": 276, "h": 38}, "note": "'What needs doing?' bold navy" },
+    { "id": "opt-skim", "kind": "control", "pixelBox": {"x": 64, "y": 662, "w": 640, "h": 50}, "note": "option row 'Skim a room' with an empty radio circle at right, thin grey border" },
+    { "id": "opt-artex", "kind": "control", "pixelBox": {"x": 64, "y": 716, "w": 640, "h": 50}, "note": "option row 'Artex ceiling' with an empty radio circle" },
+    { "id": "opt-ceiling", "kind": "control", "pixelBox": {"x": 64, "y": 769, "w": 640, "h": 50}, "note": "option row 'Ceiling repair' with an empty radio circle" },
+    { "id": "opt-media", "kind": "control", "pixelBox": {"x": 64, "y": 822, "w": 640, "h": 50}, "note": "option row 'Media wall' with an empty radio circle" },
+    { "id": "next", "kind": "control", "pixelBox": {"x": 64, "y": 880, "w": 640, "h": 52}, "note": "full-width gold button 'Next' with a right arrow" },
+    { "id": "promise-1", "kind": "text", "pixelBox": {"x": 62, "y": 960, "w": 392, "h": 28}, "note": "gold tick circle and 'Nick quotes and does every job himself' in white" },
+    { "id": "promise-2", "kind": "text", "pixelBox": {"x": 62, "y": 994, "w": 310, "h": 28}, "note": "gold tick circle and 'Floors and furniture protected'" },
+    { "id": "promise-3", "kind": "text", "pixelBox": {"x": 62, "y": 1028, "w": 278, "h": 28}, "note": "gold tick circle and 'Tidied up before he leaves'" },
+    { "id": "reviews-title", "kind": "text", "pixelBox": {"x": 42, "y": 1084, "w": 360, "h": 48}, "note": "H2 'What customers say' bold navy on white" },
+    { "id": "review-card", "kind": "chrome", "pixelBox": {"x": 42, "y": 1134, "w": 684, "h": 134}, "note": "white review card with a thin gold border", "container": true },
+    { "id": "review-stars", "kind": "text", "pixelBox": {"x": 62, "y": 1148, "w": 130, "h": 24}, "note": "five small gold stars" },
+    { "id": "review-quote", "kind": "text", "pixelBox": {"x": 62, "y": 1178, "w": 590, "h": 52}, "note": "two-line review quote in navy" },
+    { "id": "review-name", "kind": "text", "pixelBox": {"x": 62, "y": 1232, "w": 178, "h": 22}, "note": "reviewer name and town, small navy" },
+    { "id": "bar-call", "kind": "control", "pixelBox": {"x": 42, "y": 1281, "w": 392, "h": 58}, "note": "gold button with a phone icon 'Call 07495 160499'" },
+    { "id": "bar-whatsapp", "kind": "control", "pixelBox": {"x": 448, "y": 1281, "w": 278, "h": 58}, "note": "white button with navy border, WhatsApp icon and 'WhatsApp'" }
+  ]
+}

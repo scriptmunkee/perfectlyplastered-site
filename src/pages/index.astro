@@ -1,9 +1,160 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import heroPhoto from '../../assets/plates/hero-photo.png';
+import { site, waLink } from '../data/site';
+import { reviews } from '../data/reviews';
+import { services, areas, work } from '../data/services';
+
+const title = 'Plasterer in Harrogate | Perfectly Plastered';
+const description = 'Plasterer in Harrogate for skimming, artex removal, ceiling repairs and media walls. Run by Nick, rated 5.0 on Google. Get a quote by phone or WhatsApp.';
+
+const faqs = [
+  {
+    q: 'How much does plastering cost?',
+    a: 'It depends on the size of the room, the state of the walls and whether old plaster or artex needs dealing with first. Send Nick a few photos on WhatsApp and he can usually give you a rough idea quickly, then a firm quote once he has seen the job.',
+  },
+  {
+    q: 'Can you plaster over artex?',
+    a: 'Usually, yes. Most artex ceilings can be skimmed over or boarded and skimmed, which avoids scraping it off. Nick will look at the ceiling first and tell you which way suits it.',
+  },
+  {
+    q: 'How long before I can paint new plaster?',
+    a: 'Fresh plaster needs to dry right through before it is painted. It goes from dark pink to an even light pink as it dries, which usually takes days rather than hours. The first coat should be a watered-down mist coat.',
+  },
+  {
+    q: 'Which areas do you cover?',
+    a: 'Harrogate and the towns around it, including Knaresborough, Wetherby and Ripon. If you are close by but not on that list, ask anyway.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+const stars = [1, 2, 3, 4, 5];
 ---
-<Base title="Perfectly Plastered" description="Site in build." noindex>
+<Base title={title} description={description} schema={[faqSchema]}>
   <main>
-    <h1>Perfectly Plastered</h1>
-    <p>New site in build.</p>
+    <section class="hero" aria-labelledby="h1">
+      <Image class="hero-photo" src={heroPhoto} widths={[768, 1152, 1600, 2048]} sizes="(min-width: 900px) 55vw, 100vw" loading="eager" fetchpriority="high"
+        alt="Nick at work in a beamed cottage room, the ceiling freshly skimmed and the floor protected" />
+      <div class="hero-band">
+        <h1 id="h1">Plasterer in Harrogate</h1>
+        <div class="stars" role="img" aria-label="Rated 5 out of 5">{stars.map(() => <Icon name="star" />)}</div>
+        <p class="rating"><a href="#reviews">{site.reviewSummary}</a></p>
+        <QuoteForm />
+        <ul class="promises">
+          <li><Icon name="tick" class="tick" />Turns up on time, every day</li>
+          <li><Icon name="tick" class="tick" />Floors and furniture protected</li>
+          <li><Icon name="tick" class="tick" />Tidied up before he leaves</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="reviews" aria-labelledby="reviews-h">
+      <div class="inner">
+        <h2 id="reviews-h">What customers say</h2>
+        <div class="review-track">
+          {reviews.slice(0, 4).map((r) => (
+            <figure class="review">
+              <div class="stars" role="img" aria-label="5 stars">{stars.map(() => <Icon name="star" />)}</div>
+              <blockquote>{r.text}</blockquote>
+              <figcaption><strong>{r.name}</strong> · Google review</figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="more-link">Every review on Nick's <a href={site.googleReviewsUrl} rel="noopener">Google profile</a> is five stars.</p>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-h">
+      <div class="inner">
+        <h2 id="services-h">Plastering jobs Nick does</h2>
+        <p class="lede">Most work is in people's homes: single rooms, whole houses, and the repairs nobody else wants to touch.</p>
+        <div class="services">
+          {services.map((s) => (
+            <article class="service">
+              <h3>{s.title}</h3>
+              <a class="btn btn-line" href="#quote" data-pick={s.pick}>Quote</a>
+              <p>{s.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-h">
+      <div class="inner">
+        <h2 id="work-h">Recent work</h2>
+        <p class="lede">Real jobs, photographed on the day. The pink is fresh plaster still drying; it turns pale before it is ready to paint.</p>
+        <div class="work-grid">
+          {work.map((w) => (
+            <figure>
+              <img src={`/images/work/${w.file}.webp`} alt={w.caption} width="800" height="1000" loading="lazy" decoding="async" />
+              <figcaption>{w.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="more-link">More jobs go up on the <a href={site.facebookUrl} rel="noopener">Perfectly Plastered Facebook page</a>.</p>
+      </div>
+    </section>
+
+    <section class="section band-navy" id="areas" aria-labelledby="areas-h">
+      <div class="inner">
+        <h2 id="areas-h">Where Nick works</h2>
+        <p class="lede">Based in Harrogate and working across the towns around it.</p>
+        <ul class="areas">
+          {areas.map((a) => <li><strong>{a.town}</strong><span>{a.note}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-h">
+      <div class="inner about">
+        <img src="/images/work/nick-at-work.webp" alt="Nick in a Perfectly Plastered t-shirt working on a wall" width="570" height="380" loading="lazy" />
+        <div>
+          <h2 id="about-h">Run by Nick</h2>
+          <p>Perfectly Plastered is Nick's business. He comes out to look at the job, gives you the quote and stays in touch until it is finished.</p>
+          <p>Customers keep mentioning the same things: walls that look brand new, a clean house at the end of each day, and Nick himself, friendly and easy to deal with. Several have had him back for a second job.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq" aria-labelledby="faq-h">
+      <div class="inner">
+        <h2 id="faq-h">Common questions</h2>
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-h">
+      <div class="inner">
+        <h2 id="contact-h">Get a quote</h2>
+        <p class="lede">The quickest way is a WhatsApp message with a couple of photos of the job. Or just ring Nick. {site.hours}</p>
+        <div class="contact-actions">
+          <a class="btn btn-gold" href={`tel:${site.phone}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+          <a class="btn btn-line" href={waLink('Hi Nick, I found you on your website. ')}><Icon name="whatsapp" />WhatsApp a photo</a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    // Service "Quote" buttons preselect that job in the hero form.
+    document.querySelectorAll<HTMLAnchorElement>('[data-pick]').forEach((a) =>
+      a.addEventListener('click', () => {
+        const input = document.querySelector<HTMLInputElement>(`#quote input[value="${a.dataset.pick}"]`);
+        if (input) { input.checked = true; input.dispatchEvent(new Event('change')); }
+      }),
+    );
+  </script>
 </Base>

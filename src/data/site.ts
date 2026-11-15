@@ -4,18 +4,24 @@
 export const site = {
   name: 'Perfectly Plastered',
   url: 'https://perfectlyplastered.uk',
-  owner: 'Nick', // [CONFIRM] surname for About page and schema
-  phone: '+44 7495 160499', // [CONFIRM] still the main number
+  owner: 'Nick',
+  phone: '+447495160499',
   phoneDisplay: '07495 160499',
-  email: '', // [CONFIRM]
-  baseTown: 'Harrogate', // [CONFIRM]
-  serviceAreas: ['Harrogate', 'Leeds', 'York'], // [CONFIRM] full list and radius
-  hours: 'Mon to Fri 08:00 to 18:00, weekends by appointment', // [CONFIRM]
-  facebookUrl: '', // [CONFIRM]
-  googleBusinessProfileUrl: '', // [CONFIRM]
+  whatsapp: '447495160499', // [CONFIRM] same number as the phone
+  email: '', // [ASK NICK] where form enquiries go
+  baseTown: 'Harrogate',
+  serviceAreas: ['Harrogate', 'Knaresborough', 'Wetherby', 'Ripon'],
+  hours: 'Monday to Friday, 8am to 6pm. Weekends by appointment.', // [CONFIRM]
+  facebookUrl: 'https://www.facebook.com/perfectlyplasterednl',
+  googleReviewsUrl: 'https://www.google.com/maps/search/Perfectly+Plastered+07495+160499',
+  // 18 reviews on Nick's own profile plus 34 on his earlier profile, all five stars.
+  reviewSummary: '5.0 · 50+ Google reviews',
   analytics: {
-    cloudflareToken: '', // set when the Web Analytics site is created
-    posthogKey: '', // separate PostHog project per site
+    cloudflareToken: '',
+    posthogKey: '',
     posthogHost: 'https://eu.i.posthog.com',
   },
 };
+
+export const waLink = (text = '') =>
+  `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ''}`;

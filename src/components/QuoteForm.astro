@@ -1,0 +1,112 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+import { site } from '../data/site';
+// Three steps. Until Nick chooses where form enquiries should go, the finished
+// request opens WhatsApp with the details filled in, so he gets it on his phone
+// and the customer can attach photos there.
+---
+<form class="quote-card" id="quote" novalidate data-wa={site.whatsapp} aria-label="Get a quote">
+  <div class="progress" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+  <p class="step-label" aria-live="polite">Step <span data-step-num>1</span> of 3</p>
+
+  <fieldset data-step="1">
+    <legend>What needs doing?</legend>
+    <div class="options">
+      {services.map((s) => (
+        <label class="option">
+          <input type="radio" name="job" value={s.pick} />
+          <span>{s.pick}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <fieldset data-step="2" hidden>
+    <legend>Where is the job?</legend>
+    <div class="field">
+      <label for="q-town">Town</label>
+      <select id="q-town" name="town">
+        {site.serviceAreas.map((t) => <option>{t}</option>)}
+        <option>Somewhere nearby</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="q-details">Tell Nick about it <span class="hint">(optional)</span></label>
+      <textarea id="q-details" name="details" placeholder="For example: two bedroom ceilings, old artex, house is empty from March"></textarea>
+    </div>
+  </fieldset>
+
+  <fieldset data-step="3" hidden>
+    <legend>Your details</legend>
+    <div class="field">
+      <label for="q-name">Name</label>
+      <input id="q-name" name="name" autocomplete="name" required />
+    </div>
+    <div class="field">
+      <label for="q-phone">Phone number</label>
+      <input id="q-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+    </div>
+    <p class="hint">This opens WhatsApp with your request filled in. Add a few photos of the job there and Nick can quote faster.</p>
+  </fieldset>
+
+  <p class="error" data-error role="alert"></p>
+
+  <div class="step-nav">
+    <button class="btn btn-ghost" type="button" data-back hidden><Icon name="back" /><span class="sr-only">Back</span></button>
+    <button class="btn btn-gold" type="submit"><span class="label" data-next-label>Next</span><Icon name="arrow" /></button>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('quote') as HTMLFormElement | null;
+  if (form) {
+    const steps = [...form.querySelectorAll<HTMLFieldSetElement>('[data-step]')];
+    const bars = [...form.querySelectorAll<HTMLSpanElement>('.progress span')];
+    const num = form.querySelector('[data-step-num]')!;
+    const err = form.querySelector<HTMLElement>('[data-error]')!;
+    const back = form.querySelector<HTMLButtonElement>('[data-back]')!;
+    const nextLabel = form.querySelector<HTMLElement>('[data-next-label]')!;
+    let i = 0;
+
+    const show = (n: number) => {
+      i = n;
+      steps.forEach((s, k) => (s.hidden = k !== n));
+      bars.forEach((b, k) => b.classList.toggle('on', k <= n));
+      num.textContent = String(n + 1);
+      back.hidden = n === 0;
+      nextLabel.textContent = n === steps.length - 1 ? 'Send to Nick' : 'Next';
+      err.textContent = '';
+    };
+
+    const valid = () => {
+      const d = new FormData(form);
+      if (i === 0 && !d.get('job')) return 'Pick the job that fits best.';
+      if (i === 2 && !String(d.get('name') || '').trim()) return 'Add your name so Nick knows who to ask for.';
+      if (i === 2 && String(d.get('phone') || '').replace(/\D/g, '').length < 10) return 'Add a phone number Nick can call you back on.';
+      return '';
+    };
+
+    back.addEventListener('click', () => show(Math.max(0, i - 1)));
+    form.querySelectorAll('input[name="job"]').forEach((r) =>
+      r.addEventListener('change', () => setTimeout(() => i === 0 && show(1), 180)),
+    );
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const problem = valid();
+      if (problem) { err.textContent = problem; return; }
+      if (i < steps.length - 1) { show(i + 1); return; }
+      const d = new FormData(form);
+      const lines = [
+        'Hi Nick, quote request from your website.',
+        `Job: ${d.get('job')}`,
+        `Town: ${d.get('town')}`,
+        d.get('details') ? `Details: ${d.get('details')}` : '',
+        `Name: ${d.get('name')}`,
+        `Phone: ${d.get('phone')}`,
+      ].filter(Boolean);
+      window.location.href = `https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(lines.join('\n'))}`;
+    });
+  }
+</script>
