@@ -4,7 +4,7 @@ Website for Perfectly Plastered, a plastering business owned by Nick. Built and 
 
 ## Status
 Scaffold only. Nothing is designed yet. Order of work:
-1. Brief (business facts, audience, offer, proof, pages, keywords) signed off by Chris
+1. Brief: done, see PRODUCT.md (open items in docs/questions-for-nick.md)
 2. Design direction via the `impeccable` skill (`/impeccable init` writes PRODUCT.md and DESIGN.md)
 3. Homepage, then the remaining launch pages (about 10)
 4. Cloudflare Worker, analytics, Search Console, domain cutover
