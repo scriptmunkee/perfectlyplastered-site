@@ -37,7 +37,7 @@ const pile = [
 <Template title={title} description={description} theme="#f4f5fd" bodyClass="tb"
   fonts={['gabarito-latin-900-normal.woff2', 'figtree-latin-400-normal.woff2']}>
   <header class="tb-header">
-    <a class="tb-word" href="/templates/b/" aria-label="Perfectly Plastered, home">Perfectly Plastered</a>
+    <a class="tb-logo" href="/templates/b/"><img src="/images/brand/logo-ink.webp" width="360" height="315" alt="Perfectly Plastered, home" /></a>
     <nav class="tb-nav" id="site-nav" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#work">Recent work</a>
@@ -220,10 +220,13 @@ const pile = [
   </main>
 
   <footer class="tb-footer">
-    <div class="tb-inner">
+    <div class="tb-inner tb-foot">
+      <img class="tb-foot-logo" src="/images/brand/logo-ink.webp" width="360" height="315" alt="Perfectly Plastered" loading="lazy" decoding="async" />
+      <div>
       <p><strong>Perfectly Plastered</strong>, plastering in Harrogate, Knaresborough, Wetherby and Ripon. Run by Nick.</p>
       <p>Nick posts new jobs on the <a href={site.facebookUrl} rel="noopener">Perfectly Plastered Facebook page</a>.</p>
       <p>&copy; {new Date().getFullYear()} Perfectly Plastered</p>
+      </div>
     </div>
   </footer>
 

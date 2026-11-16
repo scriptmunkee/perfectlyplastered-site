@@ -30,3 +30,12 @@ The original downloads (16 site photos, 13 Facebook photos) were kept in the bui
 | public/images/work/alcove-wall-skim.webp | Alcove wall skimmed | perfectlyplastered.uk gallery (download site-14) |
 | public/images/work/kitchen-ceiling-patch.webp | Kitchen ceiling patch repair | perfectlyplastered.uk gallery (download site-06) |
 | public/images/work/open-plan-wall.webp | Open-plan room, end wall skimmed | Perfectly Plastered Facebook page (download fb-14) |
+
+## Brand
+
+| File | What | Source |
+|---|---|---|
+| docs/logo-original.webp | Original logo, white and blue on grey, 400x400 | Supplied by Chris, 16 Nov 2026 |
+| public/images/brand/logo-ink.webp | Logo recoloured for light grounds (charcoal lines, blue PLASTERED) | Recoloured from the original, not redrawn |
+| public/images/brand/logo-white.webp | Logo recoloured for dark grounds | Recoloured from the original, not redrawn |
+| public/favicon.png, public/apple-touch-icon.png | Original logo, resized | From the original |
