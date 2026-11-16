@@ -36,6 +36,5 @@ The original downloads (16 site photos, 13 Facebook photos) were kept in the bui
 | File | What | Source |
 |---|---|---|
 | docs/logo-original.webp | Original logo, white and blue on grey, 400x400 | Supplied by Chris, 16 Nov 2026 |
-| public/images/brand/logo-ink.webp | Logo recoloured for light grounds (charcoal lines, blue PLASTERED) | Recoloured from the original, not redrawn |
-| public/images/brand/logo-white.webp | Logo recoloured for dark grounds | Recoloured from the original, not redrawn |
+| public/images/brand/logo.webp | The logo as used on the site. The grey square is part of the logo: never recolour or cut it out | Copy of the original |
 | public/favicon.png, public/apple-touch-icon.png | Original logo, resized | From the original |
