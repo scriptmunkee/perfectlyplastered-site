@@ -42,6 +42,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 The user chose B and asked: "Is there anything we can do to make the reviews pop more like this (as an example, obvs ours are google reviews)", pointing at a scattered wall of message screenshots. The reviews section is now a pile of all eight real Google reviews set as Google-review-style cards (initial avatar, name, "Google review", stars, text, job tag), each at its own slight tilt and offset, straightening and lifting on hover (static under reduced motion). Four columns on desktop, two on tablet, one alternating column on phone. No Google logo is drawn; the cards are the reviews' text, not screenshots.
 
+## Change, 16 Nov 2026: matched to the logo
+
+Chris supplied the logo (grey square with white line work, script "Perfectly", sky-blue spaced-caps "PLASTERED") and asked: "is there anything we can do to have this template match the aesthetic of the logo a bit more ?" The palette now comes from the logo and replaces the indigo:
+- Ink #2f3033, body #4a4c52, muted #5d5d5d (the logo grey).
+- Accent #326c8c: the logo's sky blue deepened to pass AA on white and on the pale blue band. Tint #e6f0f6, wash #f4f7f9.
+- The raw logo blue #6fa7c4 is used only for decorative dots, never for text.
+- Logo grey #5d5d5d carries the service strip (white spaced caps, like PLASTERED), the Harrogate area tile and the closing panel.
+- The logo's roof line sits over the hero photo and over the closing panel heading.
+- The logo frame's single large rounded corner (bottom right) is used on the hero, services and about photos, work tiles, the quote card and the closing panel.
+- The hero's floating cards moved to the photo's right and left edges, so the roof line and that corner stay visible.
+- The logo is used exactly as supplied, grey square included, in the header, the footer and the favicon.
+
 ## Unresolved
 
 Same open items as the homepage: docs/questions-for-nick.md.

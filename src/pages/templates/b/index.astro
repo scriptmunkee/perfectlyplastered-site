@@ -24,14 +24,14 @@ const gallery = [...work, { file: 'box-room-walls', caption: 'Box room walls and
 // Review wall: every real review, scattered like a pile of screenshots.
 // tilt and drop give each card its own angle and vertical offset.
 const pile = [
-  { r: reviews[1], tilt: -2.5, drop: 8, av: '#3340c4' },
-  { r: reviews[4], tilt: 2, drop: 0, av: '#2f7d6d' },
-  { r: reviews[2], tilt: -1.5, drop: 10, av: '#b5562e' },
-  { r: reviews[5], tilt: 3, drop: 12, av: '#7a4a8c' },
-  { r: reviews[3], tilt: 1.5, drop: -4, av: '#46617a' },
-  { r: reviews[6], tilt: -3, drop: 6, av: '#8a5f10' },
-  { r: reviews[7], tilt: 2.5, drop: -8, av: '#a8445f' },
-  { r: reviews[0], tilt: -2, drop: 2, av: '#4f7a2e' },
+  { r: reviews[1], tilt: -2.5, drop: 8, av: '#326c8c' },
+  { r: reviews[4], tilt: 2, drop: 0, av: '#5d5d5d' },
+  { r: reviews[2], tilt: -1.5, drop: 10, av: '#3f6f63' },
+  { r: reviews[5], tilt: 3, drop: 12, av: '#6a5a8a' },
+  { r: reviews[3], tilt: 1.5, drop: -4, av: '#4a6f86' },
+  { r: reviews[6], tilt: -3, drop: 6, av: '#7a5c34' },
+  { r: reviews[7], tilt: 2.5, drop: -8, av: '#8a4d5a' },
+  { r: reviews[0], tilt: -2, drop: 2, av: '#4d6b3a' },
 ];
 ---
 <Template title={title} description={description} theme="#f4f5fd" bodyClass="tb"
@@ -69,6 +69,7 @@ const pile = [
         </ul>
       </div>
       <figure class="tb-hero-photo">
+        <svg class="roof" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M2 68 L196 3 Q200 1.6 204 3 L398 68" /></svg>
         <img src="/images/work/bright-room-skim.webp" width="1200" height="1600" fetchpriority="high"
           alt="A bright room with a sloped ceiling, walls and ceiling freshly skimmed by Nick" />
         <figcaption class="float float-review">
@@ -208,6 +209,7 @@ const pile = [
     <section class="tb-section" id="contact" aria-labelledby="contact-h">
       <div class="tb-inner">
         <div class="tb-cta">
+          <svg class="roof" viewBox="0 0 400 70" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M2 68 L196 3 Q200 1.6 204 3 L398 68" /></svg>
           <h2 id="contact-h" class="tb-display tb-cta-h">Smooth walls start with a photo</h2>
           <p>Send Nick a couple of photos on WhatsApp, or ring him for a chat about the job.</p>
           <div class="tb-ctas">
