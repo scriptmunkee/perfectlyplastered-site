@@ -21,7 +21,18 @@ const steps = [
 ];
 // Nine photos fill the desktop grid exactly (the first spans two by two).
 const gallery = [...work, { file: 'box-room-walls', caption: 'Box room walls and ceiling replastered' }];
-const featured = [reviews[1], reviews[4], reviews[3], reviews[5], reviews[6], reviews[7]];
+// Review wall: every real review, scattered like a pile of screenshots.
+// tilt and drop give each card its own angle and vertical offset.
+const pile = [
+  { r: reviews[1], tilt: -2.5, drop: 8, av: '#3340c4' },
+  { r: reviews[4], tilt: 2, drop: 0, av: '#2f7d6d' },
+  { r: reviews[2], tilt: -1.5, drop: 10, av: '#b5562e' },
+  { r: reviews[5], tilt: 3, drop: 12, av: '#7a4a8c' },
+  { r: reviews[3], tilt: 1.5, drop: -4, av: '#46617a' },
+  { r: reviews[6], tilt: -3, drop: 6, av: '#8a5f10' },
+  { r: reviews[7], tilt: 2.5, drop: -8, av: '#a8445f' },
+  { r: reviews[0], tilt: -2, drop: 2, av: '#4f7a2e' },
+];
 ---
 <Template title={title} description={description} theme="#f4f5fd" bodyClass="tb"
   fonts={['gabarito-latin-900-normal.woff2', 'figtree-latin-400-normal.woff2']}>
@@ -117,12 +128,16 @@ const featured = [reviews[1], reviews[4], reviews[3], reviews[5], reviews[6], re
           <h2 id="reviews-h" class="tb-h2">5.0 on Google from 50+ reviews</h2>
           <p class="tb-intro">Every review is five stars. The newest are on <a href={site.googleReviewsUrl} rel="noopener">Nick's Google profile</a>.</p>
         </div>
-        <div class="tb-reviews">
-          {featured.map((r) => (
-            <figure class="tb-card tb-review">
+        <div class="tb-pile">
+          {pile.map(({ r, tilt, drop, av }) => (
+            <figure class="gr" style={`--tilt:${tilt}deg;--drop:${drop}px;--av:${av}`}>
+              <figcaption class="gr-head">
+                <span class="gr-avatar" aria-hidden="true">{r.name.charAt(0)}</span>
+                <span class="gr-who"><strong>{r.name}</strong><span>Google review</span></span>
+              </figcaption>
               <span class="stars" role="img" aria-label="5 stars">{stars.map(() => <Icon name="star" />)}</span>
               <blockquote>{r.text}</blockquote>
-              <figcaption><strong>{r.name}</strong>{r.job && <span>{r.job}</span>}</figcaption>
+              {r.job && <span class="gr-job">{r.job}</span>}
             </figure>
           ))}
         </div>

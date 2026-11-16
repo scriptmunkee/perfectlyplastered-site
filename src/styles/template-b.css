@@ -209,16 +209,49 @@ p:last-child { margin-bottom: 0; }
 }
 
 .tb-rating { display: grid; justify-items: center; text-align: center; gap: 12px; margin-bottom: 48px; }
-.tb-rating .stars .icon { width: 28px; height: 28px; }
 .tb-rating .tb-h2 { margin: 0; }
 .tb-rating .tb-intro { max-width: 46ch; }
-.tb-reviews { columns: 1; column-gap: 20px; }
-.tb-review { break-inside: avoid; margin: 0 0 20px; padding: 28px; display: grid; gap: 14px; }
-.tb-review blockquote { margin: 0; color: var(--ink); font-size: 1.075rem; line-height: 1.55; }
-.tb-review figcaption { display: grid; font-size: 0.95rem; color: var(--muted); }
-.tb-review figcaption strong { color: var(--ink); }
-@media (min-width: 700px) { .tb-reviews { columns: 2; } }
-@media (min-width: 1100px) { .tb-reviews { columns: 3; } }
+.tb-rating .stars .icon { width: 32px; height: 32px; }
+
+/* Review wall: real Google reviews scattered like a pile of screenshots */
+.tb-pile { padding: 8px 4px 24px; }
+.gr {
+  position: relative; margin: 0 0 4px; z-index: 1;
+  break-inside: avoid;
+  background: var(--white); border-radius: 18px;
+  border: 1px solid #e3e5f2;
+  box-shadow: 0 2px 4px rgb(18 19 26 / 0.06), 0 22px 44px -14px rgb(18 19 26 / 0.28);
+  padding: 20px 22px 24px;
+  display: grid; gap: 10px; align-content: start;
+  transform: translateY(var(--drop)) rotate(var(--tilt));
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease-out;
+}
+.gr:hover { z-index: 5; transform: translateY(var(--drop)) rotate(0deg) scale(1.03); box-shadow: 0 2px 4px rgb(18 19 26 / 0.06), 0 30px 60px -16px rgb(37 47 160 / 0.35); }
+.gr-head { display: flex; align-items: center; gap: 12px; }
+.gr-avatar {
+  flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  background: var(--av); color: var(--white); font: 800 1.15rem/1 'Gabarito', system-ui, sans-serif;
+}
+.gr-who { display: grid; line-height: 1.25; }
+.gr-who strong { color: var(--ink); font-weight: 600; }
+.gr-who span { font-size: 0.875rem; color: var(--muted); }
+.gr .stars .icon { width: 17px; height: 17px; }
+.gr blockquote { margin: 0; color: var(--ink); font-size: 1.02rem; line-height: 1.55; }
+.gr-job {
+  justify-self: start; margin-top: 2px; padding: 5px 12px; border-radius: 999px;
+  background: var(--indigo-tint); color: var(--indigo-deep); font-size: 0.85rem; font-weight: 600;
+}
+/* Phone: one column, cards alternate sides and tuck under each other */
+@media (max-width: 699px) {
+  .tb-pile { display: grid; }
+  .gr { width: 93%; --drop: 0px; }
+  .gr + .gr { margin-top: -8px; }
+  .gr:nth-child(odd) { justify-self: start; }
+  .gr:nth-child(even) { justify-self: end; }
+}
+@media (min-width: 700px) { .tb-pile { columns: 2; column-gap: 6px; } }
+@media (min-width: 1100px) { .tb-pile { columns: 4; max-width: 1240px; margin-inline: auto; } }
+@media (prefers-reduced-motion: reduce) { .gr { transition: none; } .gr:hover { transform: translateY(var(--drop)) rotate(var(--tilt)); } }
 
 .tb-work { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 36px; }
 .tb-work figure { margin: 0; position: relative; }

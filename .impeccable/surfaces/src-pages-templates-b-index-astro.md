@@ -38,6 +38,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 - Review counts: the copy says the newest reviews are on Nick's Google profile, because 34 of the 50+ sit on his earlier profile.
 - The fixed call bar on phones hides while the hero's own Call and WhatsApp buttons are on screen, so one screen never shows four buttons for two actions.
 
+## Change, 16 Nov 2026: review wall
+
+The user chose B and asked: "Is there anything we can do to make the reviews pop more like this (as an example, obvs ours are google reviews)", pointing at a scattered wall of message screenshots. The reviews section is now a pile of all eight real Google reviews set as Google-review-style cards (initial avatar, name, "Google review", stars, text, job tag), each at its own slight tilt and offset, straightening and lifting on hover (static under reduced motion). Four columns on desktop, two on tablet, one alternating column on phone. No Google logo is drawn; the cards are the reviews' text, not screenshots.
+
 ## Unresolved
 
 Same open items as the homepage: docs/questions-for-nick.md.
